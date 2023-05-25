@@ -6,6 +6,7 @@ import axios from 'axios';
 function App() {
   const [text, setText] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const [apiresponse, setapiresponse] = useState("");
 
   useEffect(() => {
     setInputValue(text);
@@ -21,6 +22,7 @@ function App() {
 
       console.log(inputValue)
       const response = await axios.post('http://localhost:3000/download/youtube', { text: inputValue });
+      setapiresponse(response)
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -35,6 +37,7 @@ function App() {
         onChange={handleInputChange}
       />
       <button onClick={handleButtonClick}>Send Request</button>
+      {apiresponse}
     </div>
   );
 };
